@@ -66,7 +66,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <a
               href="https://luma.com/event/evt-uSPjRhJgEBSbx9j"
-              className="animate-pulse-glow bg-[var(--magenta)] text-white px-4 py-2 text-xs font-pixel inline-block hover:scale-105 transition-transform"
+              className="animate-pulse-glow bg-[var(--magenta)] text-white px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-xs font-pixel inline-block hover:scale-105 transition-transform whitespace-nowrap"
               data-luma-action="checkout"
               data-luma-event-id="evt-uSPjRhJgEBSbx9j"
             >
