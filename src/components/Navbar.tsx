@@ -24,6 +24,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (!href) return;
+
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -39,13 +52,14 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.name}
                 href={link.href}
-                className="text-sm hover:text-[var(--yellow)] transition-colors"
+                onClick={handleNavClick}
+                className="text-sm hover:text-[var(--yellow)] transition-colors cursor-pointer"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
 
