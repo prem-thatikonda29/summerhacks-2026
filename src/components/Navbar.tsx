@@ -15,6 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,7 @@ export default function Navbar() {
 
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setMenuOpen(false); // Close menu after clicking
     }
   };
 
@@ -50,6 +52,7 @@ export default function Navbar() {
             SUMMER<br className="md:hidden" /> HACKS
           </Link>
 
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -63,15 +66,53 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center space-x-4">
+          {/* Desktop Register Button */}
+          <div className="hidden md:flex items-center space-x-4">
             <a
               href="https://luma.com/event/evt-uSPjRhJgEBSbx9j"
-              className="animate-pulse-glow bg-[var(--magenta)] text-white px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-xs font-pixel inline-block hover:scale-105 transition-transform whitespace-nowrap"
+              className="animate-pulse-glow bg-[var(--magenta)] text-white px-4 py-2 text-xs font-pixel inline-block hover:scale-105 transition-transform whitespace-nowrap"
               data-luma-action="checkout"
               data-luma-event-id="evt-uSPjRhJgEBSbx9j"
             >
               REGISTER NOW
             </a>
+          </div>
+
+          {/* Mobile Hamburger Menu */}
+          <button
+            className="md:hidden text-[var(--yellow)] font-pixel text-lg hover:text-[var(--magenta)] transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            ☰
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {menuOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+
+        {/* Mobile Menu - Slide from Right */}
+        <div
+          className={`fixed top-16 right-0 w-64 h-screen bg-[#0a0a0a] border-l border-[var(--card-border)] py-4 z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+            menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="flex flex-col space-y-3 px-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={handleNavClick}
+                className="text-sm text-gray-300 hover:text-[var(--yellow)] transition-colors cursor-pointer font-pixel"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </div>
       </div>

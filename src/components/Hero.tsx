@@ -133,6 +133,18 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          {/* Mobile Register Button - Below Timer */}
+          <div className="md:hidden mt-8">
+            <a
+              href="https://luma.com/event/evt-uSPjRhJgEBSbx9j"
+              className="animate-pulse-glow bg-[var(--magenta)] text-white px-6 py-3 text-xs font-pixel inline-block hover:scale-105 transition-transform whitespace-nowrap"
+              data-luma-action="checkout"
+              data-luma-event-id="evt-uSPjRhJgEBSbx9j"
+            >
+              REGISTER NOW
+            </a>
+          </div>
         </motion.div>
 
         {/* <motion.div
