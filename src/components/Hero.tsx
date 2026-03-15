@@ -125,11 +125,11 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-8"
         >
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-8 lg:gap-12 items-center">
             {Object.entries(timeLeft).map(([unit, value]) => (
               <div key={unit} className="text-center">
-                <div className="font-pixel text-[var(--yellow)] text-4xl md:text-6xl leading-none">{String(value).padStart(2, '0')}</div>
-                <div className="text-xs text-gray-400 uppercase mt-2">{unit}</div>
+                <div className="font-pixel text-[var(--yellow)] text-2xl md:text-4xl lg:text-6xl leading-none">{String(value).padStart(2, '0')}</div>
+                <div className="text-[10px] md:text-xs text-gray-400 uppercase mt-1 md:mt-2">{unit}</div>
               </div>
             ))}
           </div>

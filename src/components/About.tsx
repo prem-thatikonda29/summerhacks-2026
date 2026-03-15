@@ -17,12 +17,12 @@ function StatCard({ value, label, suffix = '', prefix = '' }: { value: number; l
   return (
     <div
       ref={ref}
-      className="bg-[var(--card-bg)] border-2 border-[var(--card-border)] p-4 md:p-6 hover:border-[var(--yellow)] transition-colors group"
+      className="bg-[var(--card-bg)] border-2 border-[var(--card-border)] p-3 md:p-6 hover:border-[var(--yellow)] transition-colors group"
     >
-      <div className="font-pixel text-2xl md:text-4xl text-[var(--yellow)] mb-2">
+      <div className="font-pixel text-lg md:text-4xl text-[var(--yellow)] mb-2">
         {prefix}{start ? <CountUp end={value} duration={2} /> : '0'}{suffix}
       </div>
-      <div className="text-sm text-gray-400 uppercase tracking-wider">{label}</div>
+      <div className="text-xs md:text-sm text-gray-400 uppercase tracking-wider">{label}</div>
       <div className="w-8 h-1 bg-[var(--magenta)] mt-3 group-hover:w-full transition-all" />
     </div>
   );

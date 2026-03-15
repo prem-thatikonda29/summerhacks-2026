@@ -151,19 +151,19 @@ export default function Prizes() {
         {/* Podium Layout */}
         <div className="flex flex-col items-center gap-8">
           {/* 1st, 2nd, 3rd Podium */}
-          <div className="w-full flex justify-center items-center gap-8 md:gap-12">
+          <div className="w-full flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
             {/* 2nd Place - Left */}
-            <div className="flex justify-center">
+            <div className="flex justify-center order-2 md:order-1">
               <BlockTile prize={prizes[1]} index={1} variant="brick" />
             </div>
 
             {/* 1st Place - Center */}
-            <div className="flex justify-center">
+            <div className="flex justify-center order-1 md:order-2">
               <BlockTile prize={prizes[0]} index={0} variant="question" />
             </div>
 
             {/* 3rd Place - Right */}
-            <div className="flex justify-center">
+            <div className="flex justify-center order-3 md:order-3">
               <BlockTile prize={prizes[2]} index={2} variant="brick" />
             </div>
           </div>
