@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Press_Start_2P, Share_Tech_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+import LenisProvider from "@/components/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +11,18 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const pressStart2P = Press_Start_2P({
+  weight: "400",
+  variable: "--font-pixel",
+  subsets: ["latin"],
+});
+
+const shareTechMono = Share_Tech_Mono({
+  weight: "400",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -25,9 +39,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${shareTechMono.variable} antialiased`}
       >
-        {children}
+        <LenisProvider>{children}</LenisProvider>
+        <Script
+          id="luma-checkout"
+          src="https://embed.lu.ma/checkout-button.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
