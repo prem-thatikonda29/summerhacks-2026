@@ -83,7 +83,7 @@ export default function Hero() {
           className="flex justify-center items-center gap-8 mb-8"
         >
           <Image
-            src="/assets/itm.jpeg"
+            src="/assets/itm.svg"
             alt="ITM Skills University"
             width={80}
             height={80}
