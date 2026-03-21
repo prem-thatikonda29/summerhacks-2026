@@ -13,10 +13,7 @@ const spritePositions = [
   { x: '90%', y: '40%', delay: 1.2 },
 ];
 
-const socialLinks = [
-  { name: 'Instagram', icon: '📷', href: '#' },
-  { name: 'LinkedIn', icon: '💼', href: '#' },
-];
+const instagramHref = '#';
 
 export default function Footer() {
   const ref = useRef<HTMLDivElement>(null);
@@ -79,18 +76,16 @@ export default function Footer() {
           </motion.a>
         </motion.div>
 
-        <div className="border-t border-[var(--card-border)] pt-20 mt-20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs md:text-sm text-gray-400">
-            © 2026 Summer Hacks. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <a href={socialLinks[0].href} className="w-10 h-10 bg-[var(--card-bg)] border-2 border-[var(--card-border)] flex items-center justify-center hover:border-[var(--yellow)] hover:brightness-150 transition-all text-lg">
-              {socialLinks[0].icon}
-            </a>
-            <a href={socialLinks[1].href} className="w-10 h-10 bg-[var(--card-bg)] border-2 border-[var(--card-border)] flex items-center justify-center hover:border-[var(--yellow)] hover:brightness-150 transition-all text-lg">
-              {socialLinks[1].icon}
-            </a>
+        <div className="border-t border-[var(--card-border)] pt-6 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <Image src="/logo.jpeg" alt="Summer Hacks" width={160} height={52} className="h-12 w-auto object-contain" />
+            <p className="text-xs md:text-sm text-gray-400">
+              © 2026 Summer Hacks. All rights reserved.
+            </p>
           </div>
+          <a href={instagramHref} className="w-10 h-10 bg-[var(--card-bg)] border-2 border-[var(--card-border)] flex items-center justify-center hover:border-[var(--yellow)] hover:brightness-150 transition-all p-2">
+            <Image src="/assets/instagram.png" alt="Instagram" width={24} height={24} className="w-full h-full object-contain" />
+          </a>
         </div>
 
       </div>

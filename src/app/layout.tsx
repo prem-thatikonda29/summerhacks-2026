@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     creator: "@SummerHacks26",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.jpeg",
   },
   themeColor: "#F5C518",
   viewport: {

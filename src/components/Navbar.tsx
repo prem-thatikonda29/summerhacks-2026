@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -46,10 +47,10 @@ export default function Navbar() {
       }`}
       style={{ borderBottom: scrolled ? '2px solid var(--yellow)' : '2px solid var(--card-border)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="font-pixel text-xs md:text-sm text-[var(--yellow)] text-shadow-pixel">
-            SUMMER<br className="md:hidden" /> HACKS
+          <Link href="/">
+            <Image src="/logo.jpeg" alt="Summer Hacks" width={160} height={52} className="h-10 md:h-20 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
