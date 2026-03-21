@@ -14,7 +14,7 @@ const spritePositions = [
 ];
 
 function getTimeRemaining() {
-  const targetDate = new Date('2026-04-17T09:00:00');
+  const targetDate = new Date('2026-04-17T12:00:00+05:30');
   const now = new Date();
   const diff = targetDate.getTime() - now.getTime();
   
@@ -104,8 +104,8 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="font-pixel text-[1.5rem] md:text-[2.5rem] lg:text-[5rem] leading-tight text-shadow-pixel mb-4">
-            <span className="block text-[var(--yellow)]">SUMMER</span>
-            <span className="block text-[var(--magenta)]">HACKS</span>
+            <span className="block text-[var(--yellow)]" style={{ WebkitTextStroke: '2px white' }}>SUMMER</span>
+            <span className="block text-[var(--magenta)]" style={{ WebkitTextStroke: '2px white' }}>HACKS</span>
           </h1>
 
           <div className="inline-flex items-end bg-[var(--card-bg)] border border-[var(--card-border)] px-6 py-3 rounded mb-8 gap-2">
