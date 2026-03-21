@@ -34,8 +34,14 @@ const prizes = [
   },
   {
     title: 'HIDDEN ACHIEVEMENT',
-    amount: '₹10,000',
-    desc: 'Best Innovation Award',
+    amount: '₹5,000',
+    desc: 'Hidden Achievement Award',
+    isMain: false,
+  },
+  {
+    title: 'HIDDEN ACHIEVEMENT',
+    amount: '₹5,000',
+    desc: 'Hidden Achievement Award',
     isMain: false,
   },
 ];
@@ -168,9 +174,12 @@ export default function Prizes() {
             </div>
           </div>
 
-          {/* Hidden Achievement - Below */}
-          <div className="w-full flex flex-col items-center">
-            <BlockTile prize={prizes[3]} index={3} variant="special" />
+          {/* Hidden Achievements - Below */}
+          <div className="w-full flex flex-col items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-12">
+              <BlockTile prize={prizes[3]} index={3} variant="special" />
+              <BlockTile prize={prizes[4]} index={4} variant="special" />
+            </div>
           </div>
         </div>
       </div>

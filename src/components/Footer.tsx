@@ -16,8 +16,6 @@ const spritePositions = [
 const socialLinks = [
   { name: 'Instagram', icon: '📷', href: '#' },
   { name: 'LinkedIn', icon: '💼', href: '#' },
-  { name: 'Discord', icon: '💬', href: '#' },
-  { name: 'Devfolio', icon: '🎮', href: '#' },
 ];
 
 export default function Footer() {

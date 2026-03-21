@@ -140,19 +140,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <button className="bg-[var(--yellow)] text-black font-pixel text-xs px-8 py-4 hover:scale-105 transition-transform">
-            PRESS START →
-          </button>
-          <button className="border-2 border-[var(--cyan)] text-[var(--cyan)] font-pixel text-xs px-8 py-4 hover:bg-[var(--cyan)] hover:text-black transition-colors">
-            LEARN MORE
-          </button>
-        </motion.div> */}
       </div>
 
       <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2">

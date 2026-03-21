@@ -2,8 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import Image from 'next/image'
-;
+import Image from 'next/image';
 
 const spritePositions = [
   { x: '10%', y: '20%', delay: 0 },
