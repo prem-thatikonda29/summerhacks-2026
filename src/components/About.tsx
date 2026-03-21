@@ -82,7 +82,7 @@ export default function About() {
           <StatCard value={90} label="Teams" />
           <StatCard value={24} label="Hours" />
           <StatCard value={5} label="Tracks" />
-          <StatCard value={90000} label="Prize Pool" prefix="₹" />
+          <StatCard value={85000} label="Prize Pool" prefix="₹" />
         </div>
       </div>
     </section>

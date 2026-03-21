@@ -13,10 +13,17 @@ const spritePositions = [
   { x: '90%', y: '40%', delay: 1.2 },
 ];
 
-const prizes = [
+type Prize = {
+  title: string;
+  amount?: string;
+  desc: string;
+  isMain: boolean;
+};
+
+const prizes: Prize[] = [
   {
     title: 'GRAND CHAMPION',
-    amount: '₹40,000',
+    amount: '₹50,000',
     desc: 'First Place - Grand Champion',
     isMain: true,
   },
@@ -28,19 +35,17 @@ const prizes = [
   },
   {
     title: '2nd RUNNER UP',
-    amount: '₹15,000',
+    amount: '₹10,000',
     desc: 'Third Place - Quickest Build',
     isMain: false,
   },
   {
     title: 'HIDDEN ACHIEVEMENT',
-    amount: '₹5,000',
     desc: 'Hidden Achievement Award',
     isMain: false,
   },
   {
     title: 'HIDDEN ACHIEVEMENT',
-    amount: '₹5,000',
     desc: 'Hidden Achievement Award',
     isMain: false,
   },
@@ -48,7 +53,7 @@ const prizes = [
 
 type BlockVariant = 'question' | 'brick' | 'special';
 
-function BlockTile({ prize, index, variant }: { prize: typeof prizes[0]; index: number; variant: BlockVariant }) {
+function BlockTile({ prize, index, variant }: { prize: Prize; index: number; variant: BlockVariant }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
   const [isHovered, setIsHovered] = useState(false);
@@ -87,9 +92,11 @@ function BlockTile({ prize, index, variant }: { prize: typeof prizes[0]; index: 
         <div className="font-pixel text-xs md:text-sm text-[var(--yellow)] mb-2">
           {prize.title}
         </div>
-        <div className="font-pixel text-2xl md:text-3xl font-bold text-white">
-          {prize.amount}
-        </div>
+        {prize.amount && (
+          <div className="font-pixel text-2xl md:text-3xl font-bold text-white">
+            {prize.amount}
+          </div>
+        )}
       </div>
 
       {/* Tile Box with Background Image */}
