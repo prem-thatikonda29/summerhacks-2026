@@ -17,15 +17,15 @@ const spritePositions = [
 const faqs = [
   {
     question: 'What is the team size limit?',
-    answer: 'Teams can have 2-4 members. You can also participate solo, but we recommend teaming up for better chances!',
+    answer: 'Teams must have 2-4 members. Solo participation is not allowed, so make sure to find a team before the event!',
   },
   {
     question: 'Is there any participation fee?',
-    answer: 'No! Participation is completely free. We provide meals, snacks, and swag to all participants.',
+    answer: 'No! Participation is completely free. We provide dinner, snacks, and breakfast to all participants.',
   },
   {
     question: 'What if I don\'t have a team?',
-    answer: 'No worries! We have a team formation session at the beginning where you can meet other solo participants and form teams.',
+    answer: 'No worries! We have a WhatsApp group where you can connect with other participants and recruit teammates. Teams must be 2-4 members.',
   },
   {
     question: 'Do I need to bring my own laptop?',
@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     question: 'Will there be food provided?',
-    answer: 'Yes! We provide meals, snacks, and drinks throughout the event. Let us know about dietary restrictions in advance.',
+    answer: 'Yes! We provide dinner, snacks, and breakfast throughout the event. Let us know about dietary restrictions in advance.',
   },
 ];
 

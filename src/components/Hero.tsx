@@ -87,14 +87,14 @@ export default function Hero() {
             alt="ITM Skills University"
             width={80}
             height={80}
-            className="h-12 md:h-16 w-auto"
+            className="h-8 md:h-12 w-auto"
           />
           <Image
             src="/assets/sft.jpeg"
             alt="School of Future Tech"
             width={80}
             height={80}
-            className="h-12 md:h-16 w-auto"
+            className="h-8 md:h-12 w-auto"
           />
         </motion.div>
 
@@ -103,19 +103,24 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-pixel text-[1.5rem] md:text-[2.5rem] lg:text-[4rem] leading-tight text-shadow-pixel mb-4">
+          <h1 className="font-pixel text-[1.5rem] md:text-[2.5rem] lg:text-[5rem] leading-tight text-shadow-pixel mb-4">
             <span className="block text-[var(--yellow)]">SUMMER</span>
             <span className="block text-[var(--magenta)]">HACKS</span>
           </h1>
 
-          <p className="text-[var(--cyan)] font-mono text-sm md:text-lg mb-4 tracking-wider">
-            24 HOUR STARTUP HACKATHON
-          </p>
-
-          <div className="inline-block bg-[var(--card-bg)] border border-[var(--card-border)] px-6 py-3 rounded mb-8">
-            <span className="text-[var(--yellow)] text-base">APRIL 17-18, 2026</span>
-            <span className="mx-2 text-[var(--card-border)]">|</span>
-            <span className="text-white text-base">ITM Skills University</span>
+          <div className="inline-flex items-end bg-[var(--card-bg)] border border-[var(--card-border)] px-6 py-3 rounded mb-8 gap-2">
+            <span className="text-[var(--yellow)] text-base leading-none inline-flex items-end gap-1">
+              <Image src="/assets/calendar.png" alt="Calendar" width={20} height={20} className="w-5 h-5 shrink-0" /> APRIL 17-18, 2026
+            </span>
+            <span className="text-[var(--card-border)] leading-none">|</span>
+            <a
+              href="https://www.google.com/maps/place/ITM+Skills+University,+Navi+Mumbai/@19.0332725,73.0614186,17z/data=!4m6!3m5!1s0x3be7c3da3f19d2db:0x5c7077ac7d59acb0!8m2!3d19.0332725!4d73.0639935!16s%2Fg%2F11st8r_21r?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-base hover:text-[var(--cyan)] transition-colors inline-flex items-end gap-1 leading-none"
+            >
+              <Image src="/assets/location-pin.png" alt="Location" width={20} height={20} className="w-5 h-5 shrink-0" /> ITM Skills University
+            </a>
           </div>
         </motion.div>
 
@@ -128,22 +133,10 @@ export default function Hero() {
           <div className="flex flex-wrap justify-center gap-3 md:gap-8 lg:gap-12 items-center">
             {Object.entries(timeLeft).map(([unit, value]) => (
               <div key={unit} className="text-center">
-                <div className="font-pixel text-[var(--yellow)] text-2xl md:text-4xl lg:text-6xl leading-none">{String(value).padStart(2, '0')}</div>
+                <div className="font-pixel text-[var(--yellow)] text-xl md:text-3xl lg:text-5xl leading-none">{String(value).padStart(2, '0')}</div>
                 <div className="text-[10px] md:text-xs text-gray-400 uppercase mt-1 md:mt-2">{unit}</div>
               </div>
             ))}
-          </div>
-
-          {/* Mobile Register Button - Below Timer */}
-          <div className="md:hidden mt-8">
-            <a
-              href="https://luma.com/event/evt-uSPjRhJgEBSbx9j"
-              className="animate-pulse-glow bg-[var(--magenta)] text-white px-6 py-3 text-xs font-pixel inline-block hover:scale-105 transition-transform whitespace-nowrap"
-              data-luma-action="checkout"
-              data-luma-event-id="evt-uSPjRhJgEBSbx9j"
-            >
-              REGISTER NOW
-            </a>
           </div>
         </motion.div>
 
