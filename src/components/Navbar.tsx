@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -10,13 +11,15 @@ const navLinks = [
   { name: 'Schedule', href: '#schedule' },
   { name: 'Guests', href: '#speakers' },
   { name: 'Prizes', href: '#prizes' },
-  { name: 'Sponsors', href: '#sponsors' },
+  { name: 'Partners', href: '#partners' },
   { name: 'FAQ', href: '#faq' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,17 +29,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const href = e.currentTarget.getAttribute('href');
-    if (!href) return;
+    setMenuOpen(false);
 
     const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
 
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMenuOpen(false); // Close menu after clicking
+    if (pathname === '/') {
+      const element = document.getElementById(targetId);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push(`/${href}`);
     }
   };
 
@@ -59,7 +62,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={handleNavClick}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm hover:text-[var(--yellow)] transition-colors cursor-pointer"
               >
                 {link.name}
@@ -108,7 +111,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={handleNavClick}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm text-gray-300 hover:text-[var(--yellow)] transition-colors cursor-pointer font-pixel"
               >
                 {link.name}

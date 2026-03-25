@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Press_Start_2P, Share_Tech_Mono } from "next/font/go
 import Script from "next/script";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,7 +82,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${shareTechMono.variable} antialiased`}
       >
-        <LenisProvider>{children}</LenisProvider>
+        <LenisProvider>
+          <Navbar />
+          {children}
+        </LenisProvider>
         <Script
           id="luma-checkout"
           src="https://embed.lu.ma/checkout-button.js"
