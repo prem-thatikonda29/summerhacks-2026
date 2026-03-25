@@ -13,7 +13,7 @@ const spritePositions = [
   { x: '90%', y: '40%', delay: 1.2 },
 ];
 
-const instagramHref = '#';
+const instagramHref = 'https://www.instagram.com/summerhacks.live';
 
 export default function Footer() {
   const ref = useRef<HTMLDivElement>(null);
