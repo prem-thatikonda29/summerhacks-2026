@@ -23,7 +23,7 @@ const sponsors: {
 ];
 
 function SponsorCard({ sponsor, index }: { sponsor: typeof sponsors[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
