@@ -47,10 +47,10 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative h-full"
+      className="relative h-full group"
     >
       <div
-        className="bg-transparent p-6 transition-all duration-300 border-white/60 border-2 border-dashed h-full"
+        className="bg-transparent p-6 border-white/60 border-2 border-dashed h-full group-hover:border-white transition-colors duration-300"
       >
         <div
           className="absolute -top-3 -left-3 w-12 h-12 flex items-center justify-center font-pixel text-xs text-black"
