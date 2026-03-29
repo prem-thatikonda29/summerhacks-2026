@@ -90,6 +90,17 @@ export default function RootLayout({
           {children}
         </LenisProvider>
         <Script
+          id="ga-script"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WDZC9NX0ZL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-config" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WDZC9NX0ZL');`}
+        </Script>
+        <Script
           id="luma-checkout"
           src="https://embed.lu.ma/checkout-button.js"
           strategy="afterInteractive"
