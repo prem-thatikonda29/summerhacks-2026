@@ -14,6 +14,14 @@ const sponsors: {
 }[] = [
   {
     id: 1,
+    name: 'MarkTale',
+    about: 'AI-powered marketing and branding company helping startups and businesses grow through strategy, creative execution, and performance-focused digital campaigns.',
+    logo: '/assets/sponsors/marktale.webp',
+    link: 'https://www.marktaleworld.com/',
+    color: 'var(--yellow)',
+  },
+  {
+    id: 2,
     name: 'Nivanth',
     about: 'End-to-end event management platform powering hackathons, conferences, and more with QR tracking and logistics coordination.',
     logo: '/assets/sponsors/NIVANTH.svg',
