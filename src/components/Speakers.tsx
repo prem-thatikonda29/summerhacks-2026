@@ -41,14 +41,6 @@ const mentors: Person[] = [
     link: 'https://www.linkedin.com/in/haiderkhursheedk/',
     color: 'var(--yellow)',
   },
-  {
-    id: 3,
-    name: 'Anjali Goyal',
-    about: 'SDE-3 at Adobe | Ex-Microsoft. Building systems at scale for millions. Focused on AI, distributed systems and real-world impact.',
-    photo: '/assets/guests/anjali.jpg',
-    link: 'https://www.linkedin.com/in/anjgoy/',
-    color: 'var(--cyan)',
-  },
 ];
 
 function PersonCard({ person, index }: { person: Person; index: number }) {
