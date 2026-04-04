@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E2M Solutions x Summer Hacks 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --y: #F5C500;
+      --pk: #FF2575;
+      --cy: #00CFFF;
+      --e2m: #4A8FA8;
+      --bg: #0A0A0A;
+      --bg2: #101010;
+      --surf: #161616;
+      --bdr: rgba(255, 255, 255, 0.08);
+      --txt: #FFFFFF;
+      --txt2: rgba(255, 255, 255, 0.75);
+      --txt3: rgba(255, 255, 255, 0.45);
+      --gold: #F5C500;
+      --silver: #B8C4CC;
+      --bronze: #C87941;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--y);
+      border-radius: 2px
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 56px;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .nav-logos {
+      display: flex;
+      align-items: center;
+      gap: 20px
+    }
+
+    .nav-x {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--txt3);
+      letter-spacing: 0.05em
+    }
+
+    .nav-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #000;
+      background: var(--y);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.2s;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px)
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 56px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated grid bg */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--bdr) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bdr) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%);
+      animation: gridDrift 20s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0% {
+        background-position: 0 0
+      }
+
+      100% {
+        background-position: 72px 72px
+      }
+    }
+
+    .hero-presents {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--e2m);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s forwards;
+    }
+
+    .hero-presents::before,
+    .hero-presents::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--e2m);
+      opacity: 0.4;
+      max-width: 60px
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(64px, 11vw, 148px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.45s forwards;
+    }
+
+    .hero-title .y {
+      color: var(--y)
+    }
+
+    .hero-title .pk {
+      color: var(--pk)
+    }
+
+    .hero-sub-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(22px, 3.5vw, 40px);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--txt2);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.55s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+
+    .hero-meta-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--txt2);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-meta-item svg {
+      color: var(--y);
+      flex-shrink: 0
+    }
+
+    .hero-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--bdr)
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.75s forwards;
+    }
+
+    .btn-y {
+      background: var(--y);
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-y:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245, 197, 0, 0.25)
+    }
+
+    .btn-ghost {
+      color: var(--txt2);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--txt)
+    }
+
+    /* scroll indicator */
+    .scroll-ind {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s forwards;
+    }
+
+    .scroll-ind span {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--txt3);
+      text-transform: uppercase
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(var(--y), transparent);
+      animation: scrollPulse 2s ease-in-out infinite
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1.1)
+      }
+    }
+
+    /* STATS STRIP */
+    .stats-strip {
+      display: flex;
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+      background: var(--surf);
+    }
+
+    .stat {
+      flex: 1;
+      padding: 36px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .stat.vis {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .stat+.stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--bdr)
+    }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--y);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--txt3);
+      text-transform: uppercase
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 100px 56px
+    }
+
+    .s-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--cy);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .s-tag::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--cy)
+    }
+
+    .s-h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .s-lead {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--txt2);
+      max-width: 580px;
+      margin-bottom: 64px;
+    }
+
+    /* ══ PARTNERSHIP HANDSHAKE ══ */
+    .handshake-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 72px 0;
+    }
+
+    .hs-logo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 48px 56px;
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: 16px;
+      min-width: 240px;
+    }
+
+    .hs-logo-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--txt3);
+      text-transform: uppercase
+    }
+
+    .hs-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 0 24px;
+    }
+
+    .hs-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--bdr), var(--y), var(--bdr))
+    }
+
+    .hs-x-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--y);
+      padding: 12px 20px;
+      border: 1px solid rgba(245, 197, 0, 0.3);
+      border-radius: 8px;
+      background: rgba(245, 197, 0, 0.06);
+      letter-spacing: 0.05em;
+      margin: 0 -4px;
+    }
+
+    .hs-presents-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--y);
+      text-transform: uppercase;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* SH logo inline */
+    .sh-logo-inline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .sh-logo-inline .s {
+      color: var(--y)
+    }
+
+    .sh-logo-inline .h {
+      color: var(--pk)
+    }
+
+    /* E2M logo inline */
+    .e2m-logo-inline {
+      display: flex;
+      align-items: center
+    }
+
+    /* ══ WHY / BENEFITS ══ */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--bdr);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--bdr)
+    }
+
+    .benefit-card {
+      background: var(--bg2);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background 0.25s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s, background 0.25s;
+    }
+
+    .benefit-card.vis {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .benefit-card:hover {
+      background: var(--surf)
+    }
+
+    .bc-icon {
+      color: var(--y)
+    }
+
+    .bc-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase
+    }
+
+    .bc-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--txt2)
+    }
+
+    /* WP special badge */
+    .wp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(33, 117, 155, 0.15);
+      border: 1px solid rgba(33, 117, 155, 0.3);
+      color: #21759B;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-top: 8px;
+      width: fit-content;
+    }
+
+    /* ══ F1 PODIUM TIERS ══ */
+    .tiers-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr)
+    }
+
+    .podium-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+
+    .podium-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .podium-col.vis {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .podium-card {
+      width: 100%;
+      padding: 32px 28px 24px;
+      border-radius: 12px 12px 0 0;
+      border: 1px solid;
+      border-bottom: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .podium-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .podium-card:hover::before {
+      opacity: 1
+    }
+
+    /* Gold */
+    .podium-col.gold .podium-card {
+      border-color: rgba(245, 197, 0, 0.4);
+      background: rgba(245, 197, 0, 0.05)
+    }
+
+    .podium-col.gold .podium-card::before {
+      background: rgba(245, 197, 0, 0.04)
+    }
+
+    .podium-col.gold {
+      width: 340px
+    }
+
+    /* Silver */
+    .podium-col.silver .podium-card {
+      border-color: rgba(184, 196, 204, 0.3);
+      background: rgba(184, 196, 204, 0.04)
+    }
+
+    .podium-col.silver .podium-card::before {
+      background: rgba(184, 196, 204, 0.04)
+    }
+
+    .podium-col.silver {
+      width: 300px
+    }
+
+    /* Bronze */
+    .podium-col.bronze .podium-card {
+      border-color: rgba(200, 121, 65, 0.3);
+      background: rgba(200, 121, 65, 0.04)
+    }
+
+    .podium-col.bronze .podium-card::before {
+      background: rgba(200, 121, 65, 0.04)
+    }
+
+    .podium-col.bronze {
+      width: 280px
+    }
+
+    /* Community */
+    .podium-col.community .podium-card {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .podium-col.community {
+      width: 260px
+    }
+
+    .podium-pos {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .gold .podium-pos {
+      color: var(--gold)
+    }
+
+    .silver .podium-pos {
+      color: var(--silver)
+    }
+
+    .bronze .podium-pos {
+      color: var(--bronze)
+    }
+
+    .community .podium-pos {
+      color: rgba(255, 255, 255, 0.2)
+    }
+
+    .podium-tier-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .gold .podium-tier-name {
+      color: var(--gold)
+    }
+
+    .silver .podium-tier-name {
+      color: var(--silver)
+    }
+
+    .bronze .podium-tier-name {
+      color: var(--bronze)
+    }
+
+    .community .podium-tier-name {
+      color: var(--txt3)
+    }
+
+    .podium-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 16px 0 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .gold .podium-price {
+      color: var(--gold)
+    }
+
+    .silver .podium-price {
+      color: var(--silver)
+    }
+
+    .bronze .podium-price {
+      color: var(--bronze)
+    }
+
+    .community .podium-price {
+      color: var(--txt3)
+    }
+
+    .podium-price-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--txt3);
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      text-transform: uppercase
+    }
+
+    .reveal-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+      margin-top: 8px;
+    }
+
+    .gold .reveal-btn {
+      background: rgba(245, 197, 0, 0.15);
+      color: var(--gold)
+    }
+
+    .silver .reveal-btn {
+      background: rgba(184, 196, 204, 0.12);
+      color: var(--silver)
+    }
+
+    .bronze .reveal-btn {
+      background: rgba(200, 121, 65, 0.12);
+      color: var(--bronze)
+    }
+
+    .community .reveal-btn {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--txt3)
+    }
+
+    .reveal-btn:hover {
+      opacity: 0.8
+    }
+
+    /* Podium perks dropdown */
+    .perks-panel {
+      width: 100%;
+      background: var(--surf);
+      border: 1px solid;
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gold .perks-panel {
+      border-color: rgba(245, 197, 0, 0.25)
+    }
+
+    .silver .perks-panel {
+      border-color: rgba(184, 196, 204, 0.2)
+    }
+
+    .bronze .perks-panel {
+      border-color: rgba(200, 121, 65, 0.2)
+    }
+
+    .community .perks-panel {
+      border-color: rgba(255, 255, 255, 0.08)
+    }
+
+    .perks-panel.open {
+      max-height: 600px
+    }
+
+    .perks-inner {
+      padding: 24px 28px
+    }
+
+    .perk-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--bdr);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--txt2);
+    }
+
+    .perk-row:last-child {
+      border-bottom: none
+    }
+
+    .perk-tick {
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .gold .perk-tick {
+      color: var(--gold)
+    }
+
+    .silver .perk-tick {
+      color: var(--silver)
+    }
+
+    .bronze .perk-tick {
+      color: var(--bronze)
+    }
+
+    .community .perk-tick {
+      color: var(--txt3)
+    }
+
+    /* Podium stage base */
+    .podium-base {
+      width: 100%;
+      border-radius: 0 0 8px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .gold .podium-base {
+      height: 64px;
+      background: rgba(245, 197, 0, 0.18);
+      color: var(--gold)
+    }
+
+    .silver .podium-base {
+      height: 48px;
+      background: rgba(184, 196, 204, 0.12);
+      color: var(--silver)
+    }
+
+    .bronze .podium-base {
+      height: 36px;
+      background: rgba(200, 121, 65, 0.1);
+      color: var(--bronze)
+    }
+
+    .community .podium-base {
+      height: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--txt3)
+    }
+
+    /* ══ WORDPRESS SECTION ══ */
+    .wp-section {
+      border-top: 1px solid var(--bdr)
+    }
+
+    .wp-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .wp-vis {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .wp-toolbar {
+      background: #1e1e1e;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .wp-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
+
+    .wp-screen {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px
+    }
+
+    .wp-block {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid var(--bdr)
+    }
+
+    .wp-block-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--txt3);
+      text-transform: uppercase;
+      margin-bottom: 8px
+    }
+
+    .wp-block-content {
+      height: 10px;
+      background: var(--bdr);
+      border-radius: 4px
+    }
+
+    .wp-block-content.y {
+      background: rgba(245, 197, 0, 0.3);
+      width: 70%
+    }
+
+    .wp-block-content.pk {
+      background: rgba(255, 37, 117, 0.2);
+      width: 50%
+    }
+
+    .wp-block-content.sm {
+      margin-top: 6px;
+      width: 85%;
+      background: rgba(255, 255, 255, 0.06)
+    }
+
+    .wp-tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .wp-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(33, 117, 155, 0.15);
+      color: #5BAFC9;
+      border: 1px solid rgba(33, 117, 155, 0.25);
+      text-transform: uppercase;
+    }
+
+    /* ══ AUDIENCE ══ */
+    .aud-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--bdr)
+    }
+
+    .aud-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--bdr);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--bdr);
+      margin-bottom: 48px
+    }
+
+    .aud-cell {
+      background: var(--bg2);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .aud-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em
+    }
+
+    .aud-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--txt3);
+      text-transform: uppercase
+    }
+
+    .aud-bar {
+      height: 2px;
+      border-radius: 2px;
+      background: var(--bdr);
+      overflow: hidden;
+      margin-top: 4px
+    }
+
+    .aud-fill {
+      height: 100%;
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.2s ease
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .skill-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--bdr);
+      color: var(--txt2);
+      background: var(--surf);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--y);
+      color: var(--y)
+    }
+
+    /* ══ CONTACT ══ */
+    .contact-section {
+      border-top: 1px solid var(--bdr)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px
+    }
+
+    .c-card {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .c-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--cy);
+      text-transform: uppercase;
+      margin-bottom: 12px
+    }
+
+    .c-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+      text-transform: uppercase
+    }
+
+    .c-detail {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--txt2);
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .c-detail a {
+      color: var(--txt2);
+      text-decoration: none
+    }
+
+    .c-detail a:hover {
+      color: var(--y)
+    }
+
+    /* final CTA strip */
+    .cta-strip {
+      background: var(--y);
+      padding: 80px 56px;
+      text-align: center;
+    }
+
+    .cta-strip-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(40px, 7vw, 90px);
+      font-weight: 900;
+      color: #000;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px
+    }
+
+    .cta-strip-sub {
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.65);
+      margin-bottom: 40px
+    }
+
+    .btn-dark {
+      background: #000;
+      color: var(--y);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s;
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px)
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 56px;
+      border-top: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-l {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--txt3);
+      line-height: 1.6
+    }
+
+    .footer-r {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      nav {
+        padding: 16px 24px
+      }
+
+      .hero {
+        padding: 120px 24px 100px
+      }
+
+      section {
+        padding: 72px 24px
+      }
+
+      .benefit-grid,
+      .podium-wrap {
+        flex-direction: column;
+        align-items: stretch
+      }
+
+      .podium-wrap {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .podium-col {
+        width: 100% !important
+      }
+
+      .wp-split,
+      .contact-grid,
+      .aud-grid {
+        grid-template-columns: 1fr
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        gap: 12px
+      }
+
+      .stats-strip {
+        flex-wrap: wrap
+      }
+
+      .stat {
+        flex: 1 1 50%
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <div class="nav-logos">
+      <!-- E2M Logo -->
+      <svg width="52" height="28" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-label="E2M Solutions">
+        <rect x="0" y="2" width="14" height="3.5" rx="1" fill="#4A8FA8" />
+        <rect x="0" y="9" width="10" height="3.5" rx="1" fill="#4A8FA8" />
+        <rect x="0" y="16" width="14" height="3.5" rx="1" fill="#4A8FA8" />
+        <text x="17" y="20" font-family="Arial Black,sans-serif" font-size="18" font-weight="900"
+          fill="#4A8FA8">2M</text>
+      </svg>
+      <span class="nav-x">x</span>
+      <!-- SH Logo text -->
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900">
+        <span style="color:var(--y)">S</span><span style="color:var(--pk)">H</span>
+      </span>
+    </div>
+    <a href="#contact" class="nav-pill">Become a Sponsor</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-presents">E2M Solutions Presents</div>
+
+    <h1 class="hero-title">
+      <span class="y">Summer</span><br>
+      <span class="pk">Hacks</span> 2026
+    </h1>
+
+    <div class="hero-sub-title">A 24-Hour Startup Hackathon</div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <!-- calendar icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        April 17 – 18, 2026
+      </div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">
+        <!-- location icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        ITM Skills University, Kharghar
+      </div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">
+        <!-- users icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        500+ Participants
+      </div>
+    </div>
+
+    <div class="hero-cta-group">
+      <a href="#tiers" class="btn-y">View Sponsorship Tiers</a>
+      <a href="#why" class="btn-ghost">Why Sponsor
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="scroll-ind">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-num" data-target="500" data-suffix="+">0</div>
+      <div class="stat-lbl">Participants</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-target="24" data-suffix="h">0</div>
+      <div class="stat-lbl">Non-Stop Hacking</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-prefix="INR " data-target="90000" data-format="lakh">0</div>
+      <div class="stat-lbl">Prize Pool</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-target="1000" data-suffix="s+">0</div>
+      <div class="stat-lbl">Social Reach</div>
+    </div>
+  </div>
+
+  <!-- ══ PARTNERSHIP ══ -->
+  <section id="partnership" style="text-align:center;padding:80px 56px">
+    <div class="s-tag" style="justify-content:center;margin-bottom:16px">The Partnership</div>
+    <h2 class="s-h2" style="text-align:center;max-width:700px;margin:0 auto 12px">
+      E2M Solutions &amp;<br><span style="color:var(--y)">Summer Hacks 2026</span>
+    </h2>
+    <p style="font-size:16px;color:var(--txt2);max-width:500px;margin:0 auto 48px;line-height:1.7">Gold sponsorship
+      places E2M as the title name behind the biggest student hackathon in Navi Mumbai.</p>
+
+    <div class="handshake-wrap">
+      <!-- E2M Card -->
+      <div class="hs-logo-box">
+        <div class="hs-logo-label">Gold Sponsor</div>
+        <!-- E2M SVG Logo -->
+        <svg width="120" height="56" viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="4" width="22" height="7" rx="2" fill="#4A8FA8" />
+          <rect x="0" y="18" width="16" height="7" rx="2" fill="#4A8FA8" />
+          <rect x="0" y="32" width="22" height="7" rx="2" fill="#4A8FA8" />
+          <text x="28" y="42" font-family="Arial Black, sans-serif" font-weight="900" font-size="36"
+            fill="#4A8FA8">2M</text>
+        </svg>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)">e2msolutions.com</span>
+      </div>
+
+      <!-- Connector -->
+      <div class="hs-connector">
+        <div class="hs-line"></div>
+        <div class="hs-x-badge">PRESENTS</div>
+        <div class="hs-presents-text">Title Sponsor</div>
+        <div class="hs-line"></div>
+      </div>
+
+      <!-- SH Card -->
+      <div class="hs-logo-box">
+        <div class="hs-logo-label">The Event</div>
+        <!-- SH Logo (pixel-art style) -->
+        <svg width="100" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+          <!-- S letter blocks -->
+          <rect x="10" y="8" width="32" height="8" rx="2" fill="#F5C500" />
+          <rect x="10" y="16" width="8" height="10" rx="1" fill="#F5C500" />
+          <rect x="10" y="26" width="32" height="8" rx="2" fill="#F5C500" />
+          <rect x="34" y="34" width="8" height="10" rx="1" fill="#F5C500" />
+          <rect x="10" y="44" width="32" height="8" rx="2" fill="#F5C500" />
+          <!-- H letter blocks -->
+          <rect x="54" y="8" width="8" height="44" rx="2" fill="#FF2575" />
+          <rect x="78" y="8" width="8" height="44" rx="2" fill="#FF2575" />
+          <rect x="54" y="26" width="32" height="8" rx="2" fill="#FF2575" />
+          <!-- tag marker -->
+          <rect x="72" y="4" width="12" height="4" rx="1" fill="#00CFFF" opacity="0.7" />
+        </svg>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--txt3)">Apr 17–18, 2026</span>
+      </div>
+    </div>
+
+    <p
+      style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;letter-spacing:0.06em;color:var(--y);text-transform:uppercase">
+      "Summer Hacks 2026 — Presented by E2M Solutions"
+    </p>
+  </section>
+
+  <!-- ══ WHY ══ -->
+  <section id="why" style="background:var(--bg2);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)">
+    <div class="s-tag">Why Sponsor</div>
+    <h2 class="s-h2">Your Brand.<br><span style="color:var(--y)">500 Future Hires.</span></h2>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="bc-icon">
+          <!-- briefcase -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" />
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            <line x1="12" y1="12" x2="12" y2="12" />
+          </svg>
+        </div>
+        <div class="bc-title">Recruit Live</div>
+        <div class="bc-desc">Watch 500 students build under pressure. Assess real candidates in action and shortlist
+          before they graduate.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon">
+          <!-- mic -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+        </div>
+        <div class="bc-title">Stage Authority</div>
+        <div class="bc-desc">A dedicated speaking slot in front of all participants. Share your tech vision, problem
+          statements, or stack.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon">
+          <!-- trending-up -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+            <polyline points="17 6 23 6 23 12" />
+          </svg>
+        </div>
+        <div class="bc-title">PR and Social</div>
+        <div class="bc-desc">Brand woven into event reels, Instagram, and YouTube content reaching thousands across the
+          Mumbai college circuit.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon">
+          <!-- file-text -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+        </div>
+        <div class="bc-title">Resume Database</div>
+        <div class="bc-desc">Gold sponsors get full access to all participant resumes. CS, web dev, AI/ML, mobile —
+          first-mover hiring advantage.</div>
+      </div>
+      <div class="benefit-card">
+        <!-- WordPress specific -->
+        <div class="bc-icon" style="color:#21759B">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M2 12h20" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+        </div>
+        <div class="bc-title">WordPress Track</div>
+        <div class="bc-desc">Propose a WordPress / Headless CMS challenge track. E2M's expertise front and center in
+          problem statements.</div>
+        <div class="wp-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.109m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.648-.03 1.232-.105 1.232-.105.585-.075.516-.93-.065-.899 0 0-1.756.135-2.88.135-.203 0-.44-.009-.69-.015C4.87 3.946 8.23 2.011 12 2.011c2.86 0 5.44 1.095 7.37 2.894-.047-.002-.093-.015-.14-.015-1.061 0-1.815.923-1.815 1.916 0 .89.513 1.636 1.057 2.512.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.843 3.479l-1.104 3.697-3.991-11.854zm-1.62 17.176C11.276 24.012 11.635 24 12 24c-3.98 0-7.43-2.109-9.38-5.25L6.7 17.045l5.168 7.061zm-4.82-1.05L3.5 19.5c-.09-.14-.174-.284-.255-.43-.315-.57-.57-1.17-.766-1.8L5.048 23.056z" />
+          </svg>
+          WordPress Track
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon">
+          <!-- award -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="7" />
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+          </svg>
+        </div>
+        <div class="bc-title">Goodwill at Scale</div>
+        <div class="bc-desc">500 participants who remember E2M as the company that believed in them. That brand recall
+          compounds for years.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ F1 PODIUM TIERS ══ -->
+  <section id="tiers" class="tiers-section">
+    <div class="s-tag">Sponsorship Tiers</div>
+    <h2 class="s-h2">Pick Your<br><span style="color:var(--y)">Position.</span></h2>
+    <p class="s-lead">Four tiers. Limited slots. Click a tier to reveal exactly what you get. Gold is E2M's recommended
+      position — it comes with title credit across every surface.</p>
+
+    <div class="podium-wrap" id="podiumWrap">
+
+      <!-- GOLD -->
+      <div class="podium-col gold" style="transition-delay:0.1s">
+        <div class="podium-card" onclick="togglePerks('gold')">
+          <div class="podium-pos">01</div>
+          <div class="podium-tier-name">Gold Sponsor</div>
+          <div
+            style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,197,0,0.6);margin-bottom:8px;letter-spacing:0.1em">
+            TITLE SPONSOR — "PRESENTED BY"</div>
+          <div class="podium-price">$2,000</div>
+          <div class="podium-price-sub">USD per sponsor</div>
+          <button class="reveal-btn" id="btn-gold">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            Reveal Benefits
+          </button>
+        </div>
+        <div class="perks-panel" id="panel-gold">
+          <div class="perks-inner">
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Title credit on all materials: "Presented by E2M Solutions"</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Largest logo on banners, website and event tees</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Booth space at venue — full dedicated table</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>20-minute guest lecture slot on stage</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Direct campus recruitment — first pick of candidates</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Brand integration in all PR reels and posts</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Shoutouts on all social media posts</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Access to full participant resume database</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Certificate of sponsorship</div>
+          </div>
+        </div>
+        <div class="podium-base">P1</div>
+      </div>
+
+      <!-- SILVER -->
+      <div class="podium-col silver" style="transition-delay:0.2s">
+        <div class="podium-card" onclick="togglePerks('silver')">
+          <div class="podium-pos">02</div>
+          <div class="podium-tier-name">Silver Sponsor</div>
+          <div
+            style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(184,196,204,0.55);margin-bottom:8px;letter-spacing:0.1em">
+            CO-SPONSOR</div>
+          <div class="podium-price">$1,500</div>
+          <div class="podium-price-sub">USD per sponsor</div>
+          <button class="reveal-btn" id="btn-silver">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            Reveal Benefits
+          </button>
+        </div>
+        <div class="perks-panel" id="panel-silver">
+          <div class="perks-inner">
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Logo on event banners and website</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Dedicated recruitment table at the event</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>10-minute guest lecture slot on stage</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Brand mention in all PR reels</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>5 social media shoutouts</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Access to participant resume database</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Logo on email communications</div>
+          </div>
+        </div>
+        <div class="podium-base">P2</div>
+      </div>
+
+      <!-- BRONZE -->
+      <div class="podium-col bronze" style="transition-delay:0.3s">
+        <div class="podium-card" onclick="togglePerks('bronze')">
+          <div class="podium-pos">03</div>
+          <div class="podium-tier-name">Bronze Sponsor</div>
+          <div
+            style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(200,121,65,0.55);margin-bottom:8px;letter-spacing:0.1em">
+            ASSOCIATE SPONSOR</div>
+          <div class="podium-price">$1,000</div>
+          <div class="podium-price-sub">USD per sponsor</div>
+          <button class="reveal-btn" id="btn-bronze">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            Reveal Benefits
+          </button>
+        </div>
+        <div class="perks-panel" id="panel-bronze">
+          <div class="perks-inner">
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Logo on event website</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>3 social media shoutouts</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Brand mention in event mailers</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Shared recruitment table access</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Certificate of sponsorship</div>
+          </div>
+        </div>
+        <div class="podium-base">P3</div>
+      </div>
+
+      <!-- COMMUNITY -->
+      <div class="podium-col community" style="transition-delay:0.4s">
+        <div class="podium-card" onclick="togglePerks('community')">
+          <div class="podium-pos" style="font-size:48px">04</div>
+          <div class="podium-tier-name">Community</div>
+          <div
+            style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:8px;letter-spacing:0.1em">
+            IN-KIND / PARTNER</div>
+          <div class="podium-price">$500</div>
+          <div class="podium-price-sub">USD / in-kind equiv.</div>
+          <button class="reveal-btn" id="btn-community">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            Reveal Benefits
+          </button>
+        </div>
+        <div class="perks-panel" id="panel-community">
+          <div class="perks-inner">
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Logo on website</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>1 social media shoutout</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Certificate of partnership</div>
+            <div class="perk-row"><svg class="perk-tick" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>Ideal for swag, credits, or API access contributions</div>
+          </div>
+        </div>
+        <div class="podium-base" style="font-size:16px">P4</div>
+      </div>
+
+    </div><!-- /podiumWrap -->
+  </section>
+
+  <!-- ══ WORDPRESS TRACK ══ -->
+  <section class="wp-section">
+    <div class="wp-split">
+      <div>
+        <div class="s-tag">WordPress Track</div>
+        <h2 class="s-h2">Own the<br><span style="color:#21759B">WordPress</span><br>Challenge.</h2>
+        <p style="font-size:16px;line-height:1.8;color:var(--txt2);margin-bottom:28px">
+          E2M Solutions is one of India's leading WordPress and WooCommerce agencies. We propose a dedicated
+          WordPress-themed challenge track — giving E2M's brand the deepest possible integration in the event.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div
+            style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--surf);border:1px solid var(--bdr);border-radius:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21759B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <div>
+              <div
+                style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">
+                Propose the problem statement</div>
+              <div style="font-size:13px;color:var(--txt2);line-height:1.6">E2M engineers define the WordPress or
+                Headless CMS challenge — students solve it in 24 hours.</div>
+            </div>
+          </div>
+          <div
+            style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--surf);border:1px solid var(--bdr);border-radius:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21759B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <div>
+              <div
+                style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">
+                Judge the track</div>
+              <div style="font-size:13px;color:var(--txt2);line-height:1.6">E2M team members sit as judges for the
+                WordPress track — direct access to the best submissions.</div>
+            </div>
+          </div>
+          <div
+            style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--surf);border:1px solid var(--bdr);border-radius:8px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21759B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <div>
+              <div
+                style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px">
+                Sponsor the track prize</div>
+              <div style="font-size:13px;color:var(--txt2);line-height:1.6">A sub-prize for the WordPress track winner —
+                cash, swag, or an internship offer from E2M.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WP Visual mockup -->
+      <div class="wp-vis">
+        <div class="wp-toolbar">
+          <div class="wp-dot" style="background:#FF5F57"></div>
+          <div class="wp-dot" style="background:#FFBD2E"></div>
+          <div class="wp-dot" style="background:#28C840"></div>
+          <span
+            style="font-family:'DM Mono',monospace;font-size:10px;color:var(--txt3);margin-left:12px;letter-spacing:0.1em">E2M
+            Challenge — WordPress Track</span>
+        </div>
+        <div class="wp-screen">
+          <div class="wp-block">
+            <div class="wp-block-label">Track Title</div>
+            <div class="wp-block-content y"></div>
+            <div class="wp-block-content sm"></div>
+          </div>
+          <div class="wp-block">
+            <div class="wp-block-label">Problem Statement by E2M Solutions</div>
+            <div class="wp-block-content" style="width:100%"></div>
+            <div class="wp-block-content sm"></div>
+            <div class="wp-block-content sm" style="width:60%"></div>
+          </div>
+          <div class="wp-block">
+            <div class="wp-block-label">Track Tags</div>
+            <div class="wp-tag-row">
+              <span class="wp-tag">WordPress</span>
+              <span class="wp-tag">WooCommerce</span>
+              <span class="wp-tag">Headless CMS</span>
+              <span class="wp-tag">Gutenberg</span>
+              <span class="wp-tag">REST API</span>
+            </div>
+          </div>
+          <div class="wp-block">
+            <div class="wp-block-label">Sponsored Prize</div>
+            <div class="wp-block-content pk" style="width:80%"></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#21759B" stroke-width="2">
+                <circle cx="12" cy="8" r="7" />
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+              </svg>
+              <span style="font-family:'DM Mono',monospace;font-size:10px;color:#5BAFC9;letter-spacing:0.1em">Track
+                Winner Prize — E2M Solutions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AUDIENCE ══ -->
+  <section class="aud-section">
+    <div class="s-tag">Who You Reach</div>
+    <h2 class="s-h2">500 Builders.<br><span style="color:var(--y)">All Hiring-Ready.</span></h2>
+
+    <div class="aud-grid">
+      <div class="aud-cell">
+        <div class="aud-num" style="color:var(--y)" data-target="500" data-suffix="+">0</div>
+        <div class="aud-lbl">Participants</div>
+        <div class="aud-bar">
+          <div class="aud-fill" style="background:var(--y)" data-w="100"></div>
+        </div>
+      </div>
+      <div class="aud-cell">
+        <div class="aud-num" style="color:var(--pk)" data-target="72" data-suffix="%">0</div>
+        <div class="aud-lbl">Actively Job Hunting</div>
+        <div class="aud-bar">
+          <div class="aud-fill" style="background:var(--pk)" data-w="72"></div>
+        </div>
+      </div>
+      <div class="aud-cell">
+        <div class="aud-num" style="color:var(--cy)" data-target="90" data-suffix="%">0</div>
+        <div class="aud-lbl">Active on LinkedIn</div>
+        <div class="aud-bar">
+          <div class="aud-fill" style="background:var(--cy)" data-w="90"></div>
+        </div>
+      </div>
+      <div class="aud-cell">
+        <div class="aud-num" style="color:var(--silver)" data-target="24" data-suffix="h">0</div>
+        <div class="aud-lbl">Brand Exposure Window</div>
+        <div class="aud-bar">
+          <div class="aud-fill" style="background:var(--silver)" data-w="55"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      style="margin-bottom:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--txt3);text-transform:uppercase">
+      Skill Areas</div>
+    <div class="skill-tags">
+      <span class="skill-tag">Web Development</span>
+      <span class="skill-tag">WordPress / WooCommerce</span>
+      <span class="skill-tag">React / Next.js</span>
+      <span class="skill-tag">Mobile Apps</span>
+      <span class="skill-tag">AI / ML</span>
+      <span class="skill-tag">UI / UX Design</span>
+      <span class="skill-tag">Cybersecurity</span>
+      <span class="skill-tag">DevOps</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">Python</span>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="contact-section">
+    <div class="s-tag">Get in Touch</div>
+    <h2 class="s-h2">Let's Lock This In.</h2>
+    <p class="s-lead" style="margin-bottom:0">Gold slots are limited. Reach out to any of our organising committee
+      directly — we'll confirm your tier and get the paperwork moving fast.</p>
+
+    <div class="contact-grid">
+      <div class="c-card">
+        <div class="c-role">Organising Committee</div>
+        <div class="c-name">Prem Thatikonda</div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <a href="mailto:2023.tprem@isu.ac.in">2023.tprem@isu.ac.in</a>
+        </div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.41a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <a href="tel:+919769000261">+91 97690 00261</a>
+        </div>
+      </div>
+
+      <div class="c-card">
+        <div class="c-role">Organising Committee</div>
+        <div class="c-name">Grishma Thakre</div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <a href="mailto:2024.grishmat@isu.ac.in">2024.grishmat@isu.ac.in</a>
+        </div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.41a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <a href="tel:+919324120767">+91 93241 20767</a>
+        </div>
+      </div>
+
+      <div class="c-card">
+        <div class="c-role">Organising Committee</div>
+        <div class="c-name">Sayuj Pillai</div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <a href="mailto:2024.sayujp@isu.ac.in">2024.sayujp@isu.ac.in</a>
+        </div>
+        <div class="c-detail">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.41a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <a href="tel:+919923031826">+91 99230 31826</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA STRIP ══ -->
+  <div class="cta-strip">
+    <div class="cta-strip-title">Build Something<br>Together.</div>
+    <div class="cta-strip-sub">Summer Hacks 2026 — April 17–18 — ITM Skills University, Kharghar</div>
+    <a href="mailto:2023.tprem@isu.ac.in" class="btn-dark">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
+      </svg>
+      Confirm Sponsorship
+    </a>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-l">
+      Summer Hacks 2026 — ITM Skills University, School of Future Tech<br>
+      Organised by students. Built for builders.
+    </div>
+    <div class="footer-r">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900">
+        <span style="color:var(--y)">S</span><span style="color:var(--pk)">H</span>
+      </span>
+      <span style="color:var(--txt3);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em">'26</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── PODIUM TOGGLE ──
+    function togglePerks(tier) {
+      const panel = document.getElementById('panel-' + tier);
+      const btn = document.getElementById('btn-' + tier);
+      const isOpen = panel.classList.contains('open');
+      // close all
+      document.querySelectorAll('.perks-panel').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('.reveal-btn').forEach(b => {
+        b.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg> Reveal Benefits';
+      });
+      if (!isOpen) {
+        panel.classList.add('open');
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg> Hide Benefits';
+      }
+    }
+
+    // ── INTERSECTION OBSERVER ──
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('vis');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.stat, .benefit-card, .podium-col, .aud-cell').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.07) + 's';
+      io.observe(el);
+    });
+
+    // ── COUNT UP ──
+    function countUp(el) {
+      const target = parseInt(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(ease * target);
+        const display = target >= 1000 ? val.toLocaleString() : val;
+        el.textContent = prefix + display + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.done) {
+          e.target.dataset.done = '1';
+          countUp(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-target]').forEach(el => countIO.observe(el));
+
+    // ── PROGRESS BARS ──
+    const barIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const fill = e.target;
+          setTimeout(() => { fill.style.width = fill.dataset.w + '%'; }, 200);
+          barIO.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.aud-fill').forEach(el => barIO.observe(el));
+
+    // ── AUTO OPEN GOLD on scroll into view ──
+    const goldIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => togglePerks('gold'), 600);
+          goldIO.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    const podium = document.getElementById('podiumWrap');
+    if (podium) goldIO.observe(podium);
+  </script>
+</body>
+
+</html>
