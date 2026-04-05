@@ -46,7 +46,7 @@ const mentors: Person[] = [
     name: 'Abhishek Maurya',
     about: 'Senior Cloud Engineer @ Orange Business India. AWS Community Builder. Designing robust cloud architectures on AWS, mastering Kubernetes, and guiding the next generation of engineers to build and ship scalable solutions.',
     photo: '/assets/guests/abhishek.jpg',
-    link: 'https://www.linkedin.com/in/abhishek-maurya-aws/',
+    link: 'https://www.linkedin.com/in/abhitnc',
     color: 'var(--magenta)',
   },
 ];
