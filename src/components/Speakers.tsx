@@ -41,6 +41,14 @@ const mentors: Person[] = [
     link: 'https://www.linkedin.com/in/haiderkhursheedk/',
     color: 'var(--yellow)',
   },
+  {
+    id: 3,
+    name: 'Abhishek Maurya',
+    about: 'Senior Cloud Engineer @ Orange Business India. AWS Community Builder. Designing robust cloud architectures on AWS, mastering Kubernetes, and guiding the next generation of engineers to build and ship scalable solutions.',
+    photo: '/assets/guests/abhishek.jpg',
+    link: 'https://www.linkedin.com/in/abhitnc',
+    color: 'var(--magenta)',
+  },
 ];
 
 function PersonCard({ person, index }: { person: Person; index: number }) {
