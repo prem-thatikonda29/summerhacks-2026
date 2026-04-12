@@ -46,12 +46,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## CMS — Managing Content
 
-All mentors, judges, and partners are managed through Sanity Studio. You need to be invited to the Sanity project to access it.
+All mentors, judges, and partners are managed centrally through Sanity Studio by the Summer Hacks team. The website reads from the Sanity API at build/request time — no CMS access is needed to run or deploy this site.
 
-- **Live studio**: [summerhacks-sanity.sanity.studio](https://summerhacks-sanity.sanity.studio)
-- **CMS repo**: [summerhacks-2026-cms](https://github.com/prem-thatikonda29/summerhacks-2026-cms)
-
-Content changes published in the studio appear on the live site instantly via webhook revalidation.
+Content changes published in the studio appear on all connected deployments instantly via webhook revalidation.
 
 ## On-Demand Revalidation (Webhook)
 
