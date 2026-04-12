@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Summer Hacks 2026 — Website
 
-## Getting Started
+The official hackathon website for Summer Hacks 2026. Built with Next.js App Router and connected to Sanity CMS for managing mentors, judges, and partners.
 
-First, run the development server:
+## Tech Stack
 
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS 4
+- **Animation**: Framer Motion
+- **CMS**: Sanity (project ID: `h9q3fpz7`, dataset: `production`)
+
+## Local Development
+
+**1. Clone the repo**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/prem-thatikonda29/summerhacks-2026.git
+cd summerhacks-2026
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2. Install dependencies**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**3. Set up environment variables**
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open `.env.local` and fill in your value:
+```
+SANITY_REVALIDATE_SECRET=your_secret_here
+```
 
-## Learn More
+Generate a secret with:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
 
-To learn more about Next.js, take a look at the following resources:
+**4. Run the dev server**
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## CMS — Managing Content
 
-## Deploy on Vercel
+All mentors, judges, and partners are managed through Sanity Studio. You need to be invited to the Sanity project to access it.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Live studio**: [summerhacks-sanity.sanity.studio](https://summerhacks-sanity.sanity.studio)
+- **CMS repo**: [summerhacks-2026-cms](https://github.com/prem-thatikonda29/summerhacks-2026-cms)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Content changes published in the studio appear on the live site instantly via webhook revalidation.
+
+## On-Demand Revalidation (Webhook)
+
+When content is published in Sanity, it POSTs to `/api/revalidate` which triggers Next.js to regenerate the page immediately. As a fallback, pages also revalidate every hour automatically.
+
+To set this up for a new deployment:
+
+1. Generate a secret and add it to your production environment as `SANITY_REVALIDATE_SECRET`
+2. In Sanity → API → Webhooks, create a new webhook:
+   - **URL**: `https://your-site.com/api/revalidate?secret=YOUR_SECRET`
+   - **Dataset**: `production`
+   - **Trigger on**: Create, Update, Delete
+   - **Filter**: `_type in ["mentor", "judge", "partner"]`
+   - **HTTP method**: POST
+   - **Include drafts**: Off
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Home page — fetches CMS data server-side
+│   ├── api/revalidate/       # Webhook endpoint for on-demand ISR
+│   └── problem-statements/   # Problem statements page
+├── components/
+│   ├── Speakers.tsx          # Judges & Mentors section (driven by Sanity)
+│   ├── Sponsors.tsx          # Partners section (driven by Sanity)
+│   └── ...                   # Hero, About, Tracks, Schedule, Prizes, FAQ, Footer
+└── lib/
+    ├── sanity.ts             # Sanity client
+    └── queries.ts            # GROQ queries for mentors, judges, partners
+```
+
+## Deployment
+
+The site is deployed at [itm-summerhacks.xyz](https://www.itm-summerhacks.xyz).
+
+Make sure `SANITY_REVALIDATE_SECRET` is set in your hosting provider's environment variables before deploying.
