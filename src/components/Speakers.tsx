@@ -3,53 +3,15 @@
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import type { SanityPerson } from '@/lib/queries';
 
-type Person = {
-  id: number;
-  name: string;
-  about: string;
-  photo: string;
-  link: string;
-  color: string;
-};
-
-const judges: Person[] = [
-  // {
-  //   id: 1,
-  //   name: 'Jane Doe',
-  //   about: 'Partner at Acme Ventures, early-stage investor.',
-  //   photo: '/assets/judges/jane-doe.jpg',
-  //   link: 'https://linkedin.com/in/janedoe',
-  //   color: 'var(--yellow)',
-  // },
-];
-
-const mentors: Person[] = [
-  {
-    id: 1,
-    name: 'Abdullah Y. Shaikh',
-    about: 'Co-founder & CEO @LixtaNetwork. Startup builder, co-leading Lixta Network & Komunity. Turns wild ideas into working products with a focus on clean UI/UX.',
-    photo: '/assets/guests/abdullah.jpg',
-    link: 'https://www.linkedin.com/in/abdullahys24/',
-    color: 'var(--cyan)',
-  },
-  {
-    id: 2,
-    name: 'Haider Khursheed',
-    about: 'Founder @Aeomi. AI researcher and builder, co-leading Lixta Network & Aeomi. Obsessed with building tech and crafting a corporation with a tech monopoly.',
-    photo: '/assets/guests/haider.jpeg',
-    link: 'https://www.linkedin.com/in/haiderkhursheedk/',
-    color: 'var(--yellow)',
-  },
-];
-
-function PersonCard({ person, index }: { person: Person; index: number }) {
+function PersonCard({ person, index }: { person: SanityPerson; index: number }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.a
-      href={person.link}
+      href={person.linkedinUrl}
       target="_blank"
       rel="noopener noreferrer"
       ref={ref}
@@ -63,17 +25,23 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
           className="absolute -top-3 -left-3 w-12 h-12 flex items-center justify-center font-pixel text-xs text-black"
           style={{ background: person.color }}
         >
-          {person.id}
+          {index + 1}
         </div>
 
         <div className="mt-4 mb-4 flex justify-center">
-          <Image
-            src={person.photo}
-            alt={person.name}
-            width={100}
-            height={100}
-            className="w-[100px] h-[100px] object-cover rounded-full"
-          />
+          {person.photo ? (
+            <Image
+              src={person.photo}
+              alt={person.name}
+              width={100}
+              height={100}
+              className="w-[100px] h-[100px] object-cover rounded-full"
+            />
+          ) : (
+            <div className="w-[100px] h-[100px] rounded-full bg-white/10 flex items-center justify-center">
+              <span className="font-pixel text-xs text-white/40">TBA</span>
+            </div>
+          )}
         </div>
 
         <h3 className="font-pixel text-sm text-white mb-2 text-center">{person.name}</h3>
@@ -83,7 +51,7 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
   );
 }
 
-function SubSection({ title, people, color }: { title: string; people: Person[]; color: string }) {
+function SubSection({ title, people, color }: { title: string; people: SanityPerson[]; color: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -100,7 +68,7 @@ function SubSection({ title, people, color }: { title: string; people: Person[];
 
       <div className="flex flex-wrap justify-center gap-6">
         {people.map((person, i) => (
-          <div key={person.id} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
+          <div key={person._id} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
             <PersonCard person={person} index={i} />
           </div>
         ))}
@@ -109,7 +77,12 @@ function SubSection({ title, people, color }: { title: string; people: Person[];
   );
 }
 
-export default function Speakers() {
+type Props = {
+  judges: SanityPerson[];
+  mentors: SanityPerson[];
+};
+
+export default function Speakers({ judges, mentors }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
   const isEmpty = judges.length === 0 && mentors.length === 0;

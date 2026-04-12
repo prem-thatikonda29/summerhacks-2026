@@ -3,40 +3,25 @@
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import type { SanityPartner } from '@/lib/queries';
 
-const sponsors: {
-  id: number;
-  name: string;
-  about: string;
-  logo: string;
-  link: string;
-  color: string;
-}[] = [
-  {
-    id: 1,
-    name: 'MarkTale',
-    about: 'AI-powered marketing and branding company helping startups and businesses grow through strategy, creative execution, and performance-focused digital campaigns.',
-    logo: '/assets/sponsors/marktale.webp',
-    link: 'https://www.marktaleworld.com/',
-    color: 'var(--yellow)',
-  },
-  {
-    id: 2,
-    name: 'Nivanth',
-    about: 'End-to-end event management platform powering hackathons, conferences, and more with QR tracking and logistics coordination.',
-    logo: '/assets/sponsors/NIVANTH.svg',
-    link: 'https://www.nivanth.com/',
-    color: 'var(--cyan)',
-  },
-];
+const PARTNER_TYPE_LABELS: Record<string, string> = {
+  'title-sponsor': 'Title Sponsor',
+  'co-sponsor': 'Co-Sponsor',
+  'marketing-partner': 'Marketing Partner',
+  'event-management-partner': 'Event Management Partner',
+  'technology-partner': 'Technology Partner',
+  'community-partner': 'Community Partner',
+  'media-partner': 'Media Partner',
+};
 
-function SponsorCard({ sponsor, index }: { sponsor: typeof sponsors[0]; index: number }) {
+function SponsorCard({ sponsor, index }: { sponsor: SanityPartner; index: number }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.a
-      href={sponsor.link}
+      href={sponsor.websiteUrl}
       target="_blank"
       rel="noopener noreferrer"
       ref={ref}
@@ -45,22 +30,28 @@ function SponsorCard({ sponsor, index }: { sponsor: typeof sponsors[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative h-full block group"
     >
-      <div className="bg-transparent p-6 transition-all duration-300 border-white/60 border-2 border-dashed h-full group-hover:border-white transition-colors duration-300">
+      <div className="bg-transparent p-6 border-white/60 border-2 border-dashed h-full group-hover:border-white transition-colors duration-300">
         <div
-          className="absolute -top-3 -left-3 w-12 h-12 flex items-center justify-center font-pixel text-xs text-black"
+          className="absolute -top-3 -left-3 px-3 py-2 max-w-[70%] text-center font-pixel text-[9px] leading-tight text-black"
           style={{ background: sponsor.color }}
         >
-          {sponsor.id}
+          {PARTNER_TYPE_LABELS[sponsor.partnerType] ?? sponsor.partnerType}
         </div>
 
         <div className="mt-4 mb-4 flex justify-center">
-          <Image
-            src={sponsor.logo}
-            alt={sponsor.name}
-            width={100}
-            height={100}
-            className="w-[100px] h-[100px] object-contain"
-          />
+          {sponsor.logo ? (
+            <Image
+              src={sponsor.logo}
+              alt={sponsor.name}
+              width={100}
+              height={100}
+              className="w-[100px] h-[100px] object-contain"
+            />
+          ) : (
+            <div className="w-[100px] h-[100px] flex items-center justify-center">
+              <span className="font-pixel text-xs text-white/40">TBA</span>
+            </div>
+          )}
         </div>
 
         <h3 className="font-pixel text-sm text-white mb-2 text-center">{sponsor.name}</h3>
@@ -70,7 +61,11 @@ function SponsorCard({ sponsor, index }: { sponsor: typeof sponsors[0]; index: n
   );
 }
 
-export default function Sponsors() {
+type Props = {
+  sponsors: SanityPartner[];
+};
+
+export default function Sponsors({ sponsors }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -104,7 +99,7 @@ export default function Sponsors() {
         {sponsors.length > 0 ? (
           <div className="flex flex-wrap justify-center gap-6">
             {sponsors.map((sponsor, i) => (
-              <div key={sponsor.id} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
+              <div key={sponsor._id} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
                 <SponsorCard sponsor={sponsor} index={i} />
               </div>
             ))}
@@ -122,17 +117,6 @@ export default function Sponsors() {
           </motion.div>
         )}
       </div>
-
-      {/* Mario GIF - Bottom Right */}
-      {/* <div className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48">
-        <Image
-          src="/assets/mario.gif"
-          alt="Mario"
-          fill
-          className="object-contain"
-          unoptimized
-        />
-      </div> */}
     </section>
   );
 }

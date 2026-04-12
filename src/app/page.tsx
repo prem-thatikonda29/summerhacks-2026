@@ -7,16 +7,28 @@ import Prizes from "@/components/Prizes";
 import Sponsors from "@/components/Sponsors";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-export default function Home() {
+import { getMentors, getJudges, getPartners } from "@/lib/queries";
+
+export default async function Home() {
+  const [mentorsResult, judgesResult, partnersResult] = await Promise.allSettled([
+    getMentors(),
+    getJudges(),
+    getPartners(),
+  ]);
+
+  const mentors = mentorsResult.status === 'fulfilled' ? mentorsResult.value : [];
+  const judges = judgesResult.status === 'fulfilled' ? judgesResult.value : [];
+  const partners = partnersResult.status === 'fulfilled' ? partnersResult.value : [];
+
   return (
     <main className="min-h-screen bg-[var(--background)]">
       <Hero />
       <About />
       <Tracks />
       <Schedule />
-      <Speakers />
+      <Speakers judges={judges} mentors={mentors} />
       <Prizes />
-      <Sponsors />
+      <Sponsors sponsors={partners} />
       <FAQ />
       <Footer />
     </main>
