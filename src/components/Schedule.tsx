@@ -32,19 +32,19 @@ function PhaseCard({ phase, index, inView }: PhaseCardProps) {
       initial={{ opacity: 0, x: 30 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: index * 0.2 }}
-      className="relative mb-16 ml-32"
+      className="relative mb-10 sm:mb-16 ml-24 sm:ml-32"
     >
       <div className="flex items-center gap-6">
         {/* Connector line to card */}
         <div
-          className="absolute -left-8 top-8 w-8 h-px"
+          className="absolute -left-6 sm:-left-8 top-8 w-6 sm:w-8 h-px"
           style={{ backgroundColor: color }}
         />
 
         {/* Card with corner brackets */}
         <div className="relative flex-1">
           <div
-            className="border-2 p-6 relative bg-[var(--card-bg)]"
+            className="border-2 p-4 sm:p-6 relative bg-[var(--card-bg)]"
             style={{ borderColor: color }}
           >
             <div className="absolute top-0 left-0 w-4 h-4" style={{ borderTop: `2px solid ${color}`, borderLeft: `2px solid ${color}` }} />
@@ -52,7 +52,7 @@ function PhaseCard({ phase, index, inView }: PhaseCardProps) {
             <div className="absolute bottom-0 left-0 w-4 h-4" style={{ borderBottom: `2px solid ${color}`, borderLeft: `2px solid ${color}` }} />
             <div className="absolute bottom-0 right-0 w-4 h-4" style={{ borderBottom: `2px solid ${color}`, borderRight: `2px solid ${color}` }} />
 
-            <h3 className="font-pixel text-white text-sm uppercase mb-2 text-center">{phase.name}</h3>
+            <h3 className="font-pixel text-white text-xs sm:text-sm uppercase mb-2 text-center leading-relaxed">{phase.name}</h3>
             <div className="w-12 h-px mx-auto mb-3" style={{ backgroundColor: color }} />
             <p className="font-pixel text-xs text-center uppercase" style={{ color }}>{phase.desc}</p>
           </div>
@@ -104,7 +104,7 @@ export default function Schedule() {
           <div className="w-24 h-1 bg-[var(--magenta)] mx-auto" />
         </motion.div>
 
-        <div className="relative">
+        <div className="relative overflow-hidden">
           {/* Dots track + Pac-Man */}
           <div className="absolute left-0 top-0 w-24 h-full pointer-events-none">
             {/* Dots */}

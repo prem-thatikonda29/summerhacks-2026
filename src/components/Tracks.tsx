@@ -3,6 +3,8 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
+import { TRACK_SLUGS } from '@/lib/config';
 
 const tracks = [
   {
@@ -37,11 +39,11 @@ const tracks = [
   },
 ];
 
-function TrackCard({ track, index }: { track: typeof tracks[0]; index: number }) {
+function TrackCard({ track, index, href }: { track: typeof tracks[0]; index: number; href?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
-  return (
+  const card = (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
@@ -72,12 +74,13 @@ function TrackCard({ track, index }: { track: typeof tracks[0]; index: number })
         <h3 className="font-pixel text-sm text-white mb-2 text-center">{track.name}</h3>
         <p className="text-sm text-gray-400 text-center">{track.desc}</p>
       </div>
-
     </motion.div>
   );
+
+  return href ? <Link href={href} className="block h-full">{card}</Link> : card;
 }
 
-export default function Tracks() {
+export default function Tracks({ isRevealed }: { isRevealed: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -93,12 +96,22 @@ export default function Tracks() {
           <h2 className="font-pixel text-sm md:text-lg text-[var(--yellow)] mb-2">
             SPAWN LOCATIONS
           </h2>
-          <div className="w-24 h-1 bg-[var(--magenta)] mx-auto" />
+          <div className="w-24 h-1 bg-[var(--magenta)] mx-auto mb-4" />
+          <p className="font-mono text-sm text-gray-400 mt-4">
+            {isRevealed
+              ? 'Problem statements are out now, click the below tracks to see what problem statements are in each track'
+              : 'Problem statements to be revealed soon'}
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {tracks.map((track, i) => (
-            <TrackCard key={track.id} track={track} index={i} />
+            <TrackCard
+              key={track.id}
+              track={track}
+              index={i}
+              href={isRevealed ? `/problem-statements/${TRACK_SLUGS[track.id]}` : undefined}
+            />
           ))}
         </div>
       </div>

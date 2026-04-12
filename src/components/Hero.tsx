@@ -103,23 +103,23 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-pixel text-[1.5rem] md:text-[2.5rem] lg:text-[5rem] leading-tight text-shadow-pixel mb-4">
+          <h1 className="font-pixel text-[2.2rem] md:text-[2.5rem] lg:text-[5rem] leading-tight text-shadow-pixel mb-4">
             <span className="block text-[var(--yellow)]" style={{ WebkitTextStroke: '2px white' }}>SUMMER</span>
             <span className="block text-[var(--magenta)]" style={{ WebkitTextStroke: '2px white' }}>HACKS</span>
           </h1>
 
-          <div className="inline-flex items-end bg-[var(--card-bg)] border border-[var(--card-border)] px-6 py-3 rounded mb-8 gap-2">
-            <span className="text-[var(--yellow)] text-base leading-none inline-flex items-end gap-1">
-              <Image src="/assets/calendar.png" alt="Calendar" width={20} height={20} className="w-5 h-5 shrink-0" /> APRIL 17-18, 2026
+          <div className="inline-flex items-center bg-[var(--card-bg)] border border-[var(--card-border)] px-3 py-2 sm:px-6 sm:py-3 rounded mb-8 gap-1 sm:gap-2">
+            <span className="text-[var(--yellow)] text-xs sm:text-base leading-none inline-flex items-center gap-1">
+              <Image src="/assets/calendar.png" alt="Calendar" width={20} height={20} className="w-3 h-3 sm:w-5 sm:h-5 shrink-0" /> APRIL 17-18, 2026
             </span>
             <span className="text-[var(--card-border)] leading-none">|</span>
             <a
               href="https://www.google.com/maps/place/ITM+Skills+University,+Navi+Mumbai/@19.0332725,73.0614186,17z/data=!4m6!3m5!1s0x3be7c3da3f19d2db:0x5c7077ac7d59acb0!8m2!3d19.0332725!4d73.0639935!16s%2Fg%2F11st8r_21r?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white text-base hover:text-[var(--cyan)] transition-colors inline-flex items-end gap-1 leading-none"
+              className="text-white text-xs sm:text-base hover:text-[var(--cyan)] transition-colors inline-flex items-center gap-1 leading-none"
             >
-              <Image src="/assets/location-pin.png" alt="Location" width={20} height={20} className="w-5 h-5 shrink-0" /> ITM Skills University
+              <Image src="/assets/location-pin.png" alt="Location" width={20} height={20} className="w-3 h-3 sm:w-5 sm:h-5 shrink-0" /> ITM Skills University
             </a>
           </div>
         </motion.div>

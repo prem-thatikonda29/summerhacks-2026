@@ -1,4 +1,5 @@
 import {client} from './sanity'
+import {REVEAL_TIME} from './config'
 
 export type SanityPerson = {
   _id: string
@@ -30,7 +31,7 @@ export async function getMentors(): Promise<SanityPerson[]> {
         linkedinUrl, color, order
       }`,
       {},
-      {next: {revalidate: 60}},
+      {next: {revalidate: 3600, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
@@ -47,7 +48,7 @@ export async function getJudges(): Promise<SanityPerson[]> {
         linkedinUrl, color, order
       }`,
       {},
-      {next: {revalidate: 60}},
+      {next: {revalidate: 3600, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
@@ -64,7 +65,31 @@ export async function getPartners(): Promise<SanityPartner[]> {
         websiteUrl, color, partnerType, order
       }`,
       {},
-      {next: {revalidate: 60}},
+      {next: {revalidate: 3600, tags: ['sanity']}},
+    )
+    return Array.isArray(data) ? data : []
+  } catch {
+    return []
+  }
+}
+
+export type ProblemStatement = {
+  _id: string
+  title: string
+  description: string
+  track: string
+  order?: number
+}
+
+export async function getProblemStatements(track: string): Promise<ProblemStatement[]> {
+  if (new Date() < REVEAL_TIME) return []
+  try {
+    const data = await client.fetch(
+      `*[_type == "problemStatement" && track == $track] | order(order asc) {
+        _id, title, description, track, order
+      }`,
+      {track},
+      {next: {revalidate: 60, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
