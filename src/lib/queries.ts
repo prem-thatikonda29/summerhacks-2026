@@ -31,7 +31,7 @@ export async function getMentors(): Promise<SanityPerson[]> {
         linkedinUrl, color, order
       }`,
       {},
-      {next: {revalidate: 3600, tags: ['sanity']}},
+      {next: {revalidate: 300, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
@@ -48,7 +48,7 @@ export async function getJudges(): Promise<SanityPerson[]> {
         linkedinUrl, color, order
       }`,
       {},
-      {next: {revalidate: 3600, tags: ['sanity']}},
+      {next: {revalidate: 300, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
@@ -65,7 +65,7 @@ export async function getPartners(): Promise<SanityPartner[]> {
         websiteUrl, color, partnerType, order
       }`,
       {},
-      {next: {revalidate: 3600, tags: ['sanity']}},
+      {next: {revalidate: 300, tags: ['sanity']}},
     )
     return Array.isArray(data) ? data : []
   } catch {
