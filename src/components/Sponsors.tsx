@@ -13,6 +13,7 @@ const PARTNER_TYPE_LABELS: Record<string, string> = {
   'technology-partner': 'Technology Partner',
   'community-partner': 'Community Partner',
   'media-partner': 'Media Partner',
+  'swag-partner': 'Swag Partner',
 };
 
 function SponsorCard({ sponsor, index }: { sponsor: SanityPartner; index: number }) {
