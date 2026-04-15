@@ -51,11 +51,12 @@ export default async function ProblemStatementsPage({
 
         {/* Track heading */}
         <h1
-          className="font-pixel text-sm md:text-lg mb-3 leading-relaxed"
+          className="font-pixel text-sm md:text-lg mb-1 leading-relaxed"
           style={{ color: meta.color }}
         >
           {meta.name}
         </h1>
+        <p className="font-mono text-xs text-gray-500 mb-3">({meta.subtitle})</p>
         <div className="w-16 h-0.5 mb-8 md:mb-12" style={{ background: meta.color }} />
 
         {/* Content */}

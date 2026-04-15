@@ -9,31 +9,36 @@ import { TRACK_SLUGS } from '@/lib/config';
 const tracks = [
   {
     id: 1,
-    name: 'The Attention Economy',
+    name: 'Productivity, Focus & Digital Wellness',
+    subtitle: 'The Attention Economy',
     desc: 'Build tools that help people reclaim their focus, filter the noise and take back control of their time and attention.',
     color: 'var(--cyan)',
   },
   {
     id: 2,
-    name: 'Money & Markets for Everyone',
+    name: 'FinTech, Money & Financial Literacy',
+    subtitle: 'Money & Markets for Everyone',
     desc: 'Build tools that make personal finance less intimidating and financial intelligence accessible to everyone.',
     color: 'var(--yellow)',
   },
   {
     id: 3,
-    name: 'Build Your Own Thing',
+    name: 'Creator Economy, Freelancing & Entrepreneurship',
+    subtitle: 'Build Your Own Thing',
     desc: 'Build the infrastructure for the new generation of freelancers, creators and solo operators betting on themselves.',
     color: 'var(--magenta)',
   },
   {
     id: 4,
-    name: 'AI That Actually Does Things',
+    name: 'AI Agents, Automation & Smart Assistants',
+    subtitle: 'AI That Actually Does Things',
     desc: 'Build AI systems that don\'t just respond — they act, automate and operate autonomously on your behalf.',
     color: '#22c55e',
   },
   {
     id: 5,
-    name: 'Health & Body Intelligence',
+    name: 'HealthTech, Fitness & Wellbeing',
+    subtitle: 'Health & Body Intelligence',
     desc: 'Build tools that connect the dots between your habits and how you feel, and tell you something actually useful about your health.',
     color: '#a855f7',
   },
@@ -71,7 +76,8 @@ function TrackCard({ track, index, href }: { track: typeof tracks[0]; index: num
           />
         </div>
 
-        <h3 className="font-pixel text-sm text-white mb-2 text-center">{track.name}</h3>
+        <h3 className="font-pixel text-[10px] text-white mb-1 text-center leading-relaxed break-words">{track.name}</h3>
+        <p className="font-mono text-xs text-gray-500 text-center mb-3">({track.subtitle})</p>
         <p className="text-sm text-gray-400 text-center">{track.desc}</p>
       </div>
     </motion.div>
