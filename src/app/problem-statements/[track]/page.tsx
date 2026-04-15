@@ -62,7 +62,7 @@ export default async function ProblemStatementsPage({
         {!isRevealed ? (
           <div className="border-2 border-dashed border-white/20 p-5 sm:p-8 text-center">
             <p className="font-mono text-gray-400">
-              Problem statements will be revealed on April 18 at 1:00 PM IST.
+              Problem statements will be revealed on April 16 at 10:00 AM IST.
             </p>
           </div>
         ) : statements.length === 0 ? (
