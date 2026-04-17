@@ -14,7 +14,7 @@ const spritePositions = [
 ];
 
 function getTimeRemaining() {
-  const targetDate = new Date('2026-04-17T12:00:00+05:30');
+  const targetDate = new Date('2026-04-17T14:00:00+05:30');
   const now = new Date();
   const diff = targetDate.getTime() - now.getTime();
   
