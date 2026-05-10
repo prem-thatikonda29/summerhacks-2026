@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -13,31 +12,7 @@ const spritePositions = [
   { x: '90%', y: '40%', delay: 1.2 },
 ];
 
-function getTimeRemaining() {
-  const targetDate = new Date('2026-04-17T14:00:00+05:30');
-  const now = new Date();
-  const diff = targetDate.getTime() - now.getTime();
-  
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
-}
-
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    setTimeLeft(getTimeRemaining());
-    const timer = setInterval(() => {
-      setTimeLeft(getTimeRemaining());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--background)]">
@@ -130,14 +105,13 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-8"
         >
-          <div className="flex flex-wrap justify-center gap-3 md:gap-8 lg:gap-12 items-center">
-            {Object.entries(timeLeft).map(([unit, value]) => (
-              <div key={unit} className="text-center">
-                <div className="font-pixel text-[var(--yellow)] text-xl md:text-3xl lg:text-5xl leading-none">{String(value).padStart(2, '0')}</div>
-                <div className="text-[10px] md:text-xs text-gray-400 uppercase mt-1 md:mt-2">{unit}</div>
-              </div>
-            ))}
-          </div>
+          <p className="font-pixel text-sm md:text-base lg:text-lg text-white leading-relaxed">
+            That's a wrap!{' '}
+            <span className="text-[var(--yellow)]">Summer Hacks 2026</span>{' '}
+            ended April 18th.
+            <br />
+            Thanks for making it legendary.
+          </p>
         </motion.div>
 
       </div>
