@@ -39,16 +39,6 @@ const prizes: Prize[] = [
     desc: 'Third Place - Quickest Build',
     isMain: false,
   },
-  {
-    title: 'HIDDEN ACHIEVEMENT',
-    desc: 'Hidden Achievement Award',
-    isMain: false,
-  },
-  {
-    title: 'HIDDEN ACHIEVEMENT',
-    desc: 'Hidden Achievement Award',
-    isMain: false,
-  },
 ];
 
 type BlockVariant = 'question' | 'brick' | 'special';
@@ -178,14 +168,6 @@ export default function Prizes() {
             {/* 3rd Place - Right */}
             <div className="flex justify-center order-3 md:order-3">
               <BlockTile prize={prizes[2]} index={2} variant="brick" />
-            </div>
-          </div>
-
-          {/* Hidden Achievements - Below */}
-          <div className="w-full flex flex-col items-center gap-4">
-            <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-12">
-              <BlockTile prize={prizes[3]} index={3} variant="special" />
-              <BlockTile prize={prizes[4]} index={4} variant="special" />
             </div>
           </div>
         </div>
